@@ -162,6 +162,49 @@ jobs:
       force-build: ${{ inputs.force-build }}
     secrets: inherit
 
+  sonic-login-manager:
+    uses: ./.github/workflows/build-package.yml
+    needs:
+      - sonic-frameworks-auth
+      - sonic-frameworks-core-addons
+      - sonic-frameworks-io
+      - sonic-frameworks-quick-ui
+      - sonic-frameworks-windowsystem
+      - sonic-interface-libraries
+      - sonic-screen-library
+      - sonic-workspace
+    with:
+      repository: ${{ github.repository_owner }}/sonic-login-manager
+      force-build: ${{ inputs.force-build }}
+    secrets: inherit
+
+  sonic-login-manager-dinit:
+    uses: ./.github/workflows/build-package.yml
+    needs:
+      - sonic-login-manager
+    with:
+      repository: ${{ github.repository_owner }}/sonic-login-manager-dinit
+      force-build: ${{ inputs.force-build }}
+    secrets: inherit
+
+  sonic-login-manager-openrc:
+    uses: ./.github/workflows/build-package.yml
+    needs:
+      - sonic-login-manager
+    with:
+      repository: ${{ github.repository_owner }}/sonic-login-manager-openrc
+      force-build: ${{ inputs.force-build }}
+    secrets: inherit
+
+  sonic-login-manager-runit:
+    uses: ./.github/workflows/build-package.yml
+    needs:
+      - sonic-login-manager
+    with:
+      repository: ${{ github.repository_owner }}/sonic-login-manager-runit
+      force-build: ${{ inputs.force-build }}
+    secrets: inherit
+
   sonic-network-manager:
     uses: ./.github/workflows/build-package.yml
     needs:
@@ -389,6 +432,10 @@ jobs:
       - sonic-frameworks-windowsystem
       - sonic-interface-libraries
       - sonic-keybind-daemon
+      - sonic-login-manager
+      - sonic-login-manager-dinit
+      - sonic-login-manager-openrc
+      - sonic-login-manager-runit
       - sonic-network-manager
       - sonic-night-light
       - sonic-screen
