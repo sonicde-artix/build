@@ -18,6 +18,12 @@ on:
           Force the build of the package. Replaces an eventually existing release
           with the result of this build run.
         type: boolean
+      packager:
+        type: string
+        description: >
+          The builder of the packages in the form of a name and an email address in
+          the form of John Doe <john@example.com>
+        default: ${{ vars.PACKAGER }}
 
       # App-based authentication
       app-client-id:
@@ -111,6 +117,7 @@ jobs:
         uses: callmetango/archlinux-build-package-action@HEAD
         with:
           path: package
+          packager: ${{ inputs.packager }}
           docker-image: artixlinux/artixlinux:base-devel
           makepkg-opts: --syncdeps --noconfirm
           keyrings: artix-keyring
