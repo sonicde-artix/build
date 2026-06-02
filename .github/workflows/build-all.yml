@@ -205,6 +205,15 @@ jobs:
       force-build: ${{ inputs.force-build }}
     secrets: inherit
 
+  sonic-login-manager-s6:
+    uses: ./.github/workflows/build-package.yml
+    needs:
+      - sonic-login-manager
+    with:
+      repository: ${{ github.repository_owner }}/sonic-login-manager-s6
+      force-build: ${{ inputs.force-build }}
+    secrets: inherit
+
   sonic-network-manager:
     uses: ./.github/workflows/build-package.yml
     needs:
@@ -436,6 +445,7 @@ jobs:
       - sonic-login-manager-dinit
       - sonic-login-manager-openrc
       - sonic-login-manager-runit
+      - sonic-login-manager-s6
       - sonic-network-manager
       - sonic-night-light
       - sonic-screen
