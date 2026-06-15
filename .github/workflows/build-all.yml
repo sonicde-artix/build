@@ -15,6 +15,7 @@ jobs:
   sonic-activities:
     uses: ./.github/workflows/build-package.yml
     needs:
+      - sonic-frameworks-cmake-modules
       - sonic-frameworks-core-addons
     with:
       repository: ${{ github.repository_owner }}/sonic-activities
@@ -24,6 +25,7 @@ jobs:
   sonic-audio-applet-pulse:
     uses: ./.github/workflows/build-package.yml
     needs:
+      - sonic-frameworks-cmake-modules
       - sonic-frameworks-core-addons
       - sonic-frameworks-quick-ui
       - sonic-interface-libraries
@@ -36,6 +38,8 @@ jobs:
 
   sonic-decoration:
     uses: ./.github/workflows/build-package.yml
+    needs:
+      - sonic-frameworks-cmake-modules
     with:
       repository: ${{ github.repository_owner }}/sonic-decoration
       force-build: ${{ inputs.force-build }}
@@ -46,6 +50,7 @@ jobs:
     needs:
       - sonic-activities
       - sonic-frameworks-auth
+      - sonic-frameworks-cmake-modules
       - sonic-frameworks-core-addons
       - sonic-frameworks-io
       - sonic-frameworks-keybind
@@ -64,6 +69,7 @@ jobs:
   sonic-frameworks-auth:
     uses: ./.github/workflows/build-package.yml
     needs:
+      - sonic-frameworks-cmake-modules
       - sonic-frameworks-core-addons
       - sonic-frameworks-windowsystem
     with:
@@ -71,8 +77,17 @@ jobs:
       force-build: ${{ inputs.force-build }}
     secrets: inherit
 
+  sonic-frameworks-cmake-modules:
+    uses: ./.github/workflows/build-package.yml
+    with:
+      repository: ${{ github.repository_owner }}/sonic-frameworks-cmake-modules
+      force-build: ${{ inputs.force-build }}
+    secrets: inherit
+
   sonic-frameworks-core-addons:
     uses: ./.github/workflows/build-package.yml
+    needs:
+      - sonic-frameworks-cmake-modules
     with:
       repository: ${{ github.repository_owner }}/sonic-frameworks-core-addons
       force-build: ${{ inputs.force-build }}
@@ -107,6 +122,8 @@ jobs:
 
   sonic-frameworks-keybind:
     uses: ./.github/workflows/build-package.yml
+    needs:
+      - sonic-frameworks-cmake-modules
     with:
       repository: ${{ github.repository_owner }}/sonic-frameworks-keybind
       force-build: ${{ inputs.force-build }}
@@ -114,6 +131,8 @@ jobs:
 
   sonic-frameworks-quick-ui:
     uses: ./.github/workflows/build-package.yml
+    needs:
+      - sonic-frameworks-cmake-modules
     with:
       repository: ${{ github.repository_owner }}/sonic-frameworks-quick-ui
       force-build: ${{ inputs.force-build }}
@@ -122,6 +141,7 @@ jobs:
   sonic-frameworks-runner:
     uses: ./.github/workflows/build-package.yml
     needs:
+      - sonic-frameworks-cmake-modules
       - sonic-frameworks-core-addons
       - sonic-frameworks-windowsystem
     with:
@@ -131,6 +151,8 @@ jobs:
 
   sonic-frameworks-windowsystem:
     uses: ./.github/workflows/build-package.yml
+    needs:
+      - sonic-frameworks-cmake-modules
     with:
       repository: ${{ github.repository_owner }}/sonic-frameworks-windowsystem
       force-build: ${{ inputs.force-build }}
@@ -140,6 +162,7 @@ jobs:
     uses: ./.github/workflows/build-package.yml
     needs:
       - sonic-activities
+      - sonic-frameworks-cmake-modules
       - sonic-frameworks-core-addons
       - sonic-frameworks-io
       - sonic-frameworks-keybind
@@ -153,6 +176,7 @@ jobs:
   sonic-keybind-daemon:
     uses: ./.github/workflows/build-package.yml
     needs:
+      - sonic-frameworks-cmake-modules
       - sonic-frameworks-core-addons
       - sonic-frameworks-io
       - sonic-frameworks-keybind
@@ -217,6 +241,8 @@ jobs:
   sonic-network-manager:
     uses: ./.github/workflows/build-package.yml
     needs:
+      - sonic-frameworks-cmake-modules
+      - sonic-frameworks-core-addons
       - sonic-frameworks-io
       - sonic-frameworks-quick-ui
       - sonic-frameworks-windowsystem
@@ -239,6 +265,7 @@ jobs:
   sonic-screen:
     uses: ./.github/workflows/build-package.yml
     needs:
+      - sonic-frameworks-cmake-modules
       - sonic-frameworks-core-addons
       - sonic-frameworks-quick-ui
       - sonic-frameworks-windowsystem
@@ -251,6 +278,8 @@ jobs:
 
   sonic-screen-library:
     uses: ./.github/workflows/build-package.yml
+    needs:
+      - sonic-frameworks-cmake-modules
     with:
       repository: ${{ github.repository_owner }}/sonic-screen-library
       force-build: ${{ inputs.force-build }}
@@ -259,6 +288,7 @@ jobs:
   sonic-screenlocker:
     uses: ./.github/workflows/build-package.yml
     needs:
+      - sonic-frameworks-cmake-modules
       - sonic-frameworks-core-addons
       - sonic-frameworks-io
       - sonic-frameworks-keybind
@@ -274,6 +304,7 @@ jobs:
   sonic-silver-sddm:
     uses: ./.github/workflows/build-package.yml
     needs:
+      - sonic-frameworks-cmake-modules
       - sonic-workspace
     with:
       repository: ${{ github.repository_owner }}/sonic-silver-sddm
@@ -296,6 +327,7 @@ jobs:
     uses: ./.github/workflows/build-package.yml
     needs:
       - sonic-frameworks-auth
+      - sonic-frameworks-cmake-modules
       - sonic-frameworks-core-addons
       - sonic-frameworks-quick-ui
     with:
@@ -307,6 +339,7 @@ jobs:
     uses: ./.github/workflows/build-package.yml
     needs:
       - sonic-frameworks-auth
+      - sonic-frameworks-cmake-modules
       - sonic-frameworks-core-addons
       - sonic-frameworks-io
       - sonic-frameworks-quick-ui
@@ -320,6 +353,7 @@ jobs:
     needs:
       - sonic-activities
       - sonic-frameworks-auth
+      - sonic-frameworks-cmake-modules
       - sonic-frameworks-core-addons
       - sonic-frameworks-keybind
       - sonic-frameworks-quick-ui
@@ -337,6 +371,7 @@ jobs:
     needs:
       - sonic-activities
       - sonic-frameworks-auth
+      - sonic-frameworks-cmake-modules
       - sonic-frameworks-core-addons
       - sonic-frameworks-gui-addons
       - sonic-frameworks-io
@@ -358,6 +393,7 @@ jobs:
     uses: ./.github/workflows/build-package.yml
     needs:
       - sonic-frameworks-auth
+      - sonic-frameworks-cmake-modules
       - sonic-frameworks-core-addons
       - sonic-frameworks-io
       - sonic-frameworks-keybind
@@ -376,6 +412,7 @@ jobs:
     uses: ./.github/workflows/build-package.yml
     needs:
       - sonic-frameworks-auth
+      - sonic-frameworks-cmake-modules
       - sonic-frameworks-core-addons
       - sonic-frameworks-io
       - sonic-frameworks-keybind
@@ -398,6 +435,7 @@ jobs:
       - sonic-decoration
       - sonic-desktop-interface
       - sonic-frameworks-auth
+      - sonic-frameworks-cmake-modules
       - sonic-frameworks-core-addons
       - sonic-frameworks-io
       - sonic-frameworks-keybind
@@ -431,6 +469,7 @@ jobs:
       - sonic-decoration
       - sonic-desktop-interface
       - sonic-frameworks-auth
+      - sonic-frameworks-cmake-modules
       - sonic-frameworks-core-addons
       - sonic-frameworks-gui-addons
       - sonic-frameworks-io
