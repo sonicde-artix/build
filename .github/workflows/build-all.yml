@@ -1,5 +1,5 @@
 # SPDX-License-Identifier: AGPL-3.0-only
-# Copyright (C) 2026 - callmetango for SonicDE.org
+# SPDX-FileCopyrightText: 2026 callmetango for SonicDE.org
 
 name: Build All and Publish
 
@@ -28,9 +28,9 @@ jobs:
       - sonic-frameworks-cmake-modules
       - sonic-frameworks-core-addons
       - sonic-frameworks-doctools
+      - sonic-frameworks-keybind
       - sonic-frameworks-quick-ui
       - sonic-interface-libraries
-      - sonic-keybind-daemon
       - sonic-workspace
     with:
       repository: ${{ github.repository_owner }}/sonic-audio-applet-pulse
@@ -223,6 +223,7 @@ jobs:
     uses: ./.github/workflows/build-package.yml
     needs:
       - sonic-frameworks-auth
+      - sonic-frameworks-cmake-modules
       - sonic-frameworks-core-addons
       - sonic-frameworks-io
       - sonic-frameworks-quick-ui
@@ -238,6 +239,7 @@ jobs:
   sonic-login-manager-dinit:
     uses: ./.github/workflows/build-package.yml
     needs:
+      - sonic-frameworks-cmake-modules
       - sonic-login-manager
     with:
       repository: ${{ github.repository_owner }}/sonic-login-manager-dinit
@@ -247,6 +249,7 @@ jobs:
   sonic-login-manager-openrc:
     uses: ./.github/workflows/build-package.yml
     needs:
+      - sonic-frameworks-cmake-modules
       - sonic-login-manager
     with:
       repository: ${{ github.repository_owner }}/sonic-login-manager-openrc
@@ -256,6 +259,7 @@ jobs:
   sonic-login-manager-runit:
     uses: ./.github/workflows/build-package.yml
     needs:
+      - sonic-frameworks-cmake-modules
       - sonic-login-manager
     with:
       repository: ${{ github.repository_owner }}/sonic-login-manager-runit
@@ -265,6 +269,7 @@ jobs:
   sonic-login-manager-s6:
     uses: ./.github/workflows/build-package.yml
     needs:
+      - sonic-frameworks-cmake-modules
       - sonic-login-manager
     with:
       repository: ${{ github.repository_owner }}/sonic-login-manager-s6
@@ -289,6 +294,7 @@ jobs:
   sonic-night-light:
     uses: ./.github/workflows/build-package.yml
     needs:
+      - sonic-frameworks-cmake-modules
       - sonic-frameworks-core-addons
     with:
       repository: ${{ github.repository_owner }}/sonic-night-light
@@ -350,7 +356,9 @@ jobs:
     uses: ./.github/workflows/build-package.yml
     needs:
       - sonic-decoration
+      - sonic-frameworks-cmake-modules
       - sonic-frameworks-core-addons
+      - sonic-frameworks-gui-addons
       - sonic-frameworks-quick-ui
       - sonic-frameworks-windowsystem
     with:
@@ -421,6 +429,7 @@ jobs:
       - sonic-frameworks-runner
       - sonic-frameworks-windowsystem
       - sonic-interface-libraries
+      - sonic-night-light
       - sonic-screenlocker
       - sonic-sysguard-library
       - sonic-win
@@ -470,33 +479,16 @@ jobs:
   sonicde-meta:
     uses: ./.github/workflows/build-package.yml
     needs:
-      - sonic-activities
       - sonic-audio-applet-pulse
-      - sonic-decoration
       - sonic-desktop-interface
-      - sonic-frameworks-auth
       - sonic-frameworks-cmake-modules
-      - sonic-frameworks-core-addons
-      - sonic-frameworks-io
-      - sonic-frameworks-keybind
-      - sonic-frameworks-quick-ui
-      - sonic-frameworks-runner
-      - sonic-frameworks-windowsystem
-      - sonic-interface-libraries
-      - sonic-keybind-daemon
+      - sonic-login-manager
       - sonic-network-manager
       - sonic-night-light
       - sonic-screen
-      - sonic-screen-library
-      - sonic-screenlocker
-      - sonic-silver-sddm
       - sonic-silver-theme
-      - sonic-sysguard-library
       - sonic-system-info
-      - sonic-win
-      - sonic-workspace
       - sonic-workspace-addons
-      - sonic-workspace-wallpapers
     with:
       repository: ${{ github.repository_owner }}/sonicde-meta
       force-build: ${{ inputs.force-build }}
@@ -523,7 +515,12 @@ jobs:
       - sonic-interface-libraries
       - sonic-keybind-daemon
       - sonic-login-manager
+      - sonic-login-manager-dinit
+      - sonic-login-manager-openrc
+      - sonic-login-manager-runit
+      - sonic-login-manager-s6
       - sonic-network-manager
+      - sonic-night-light
       - sonic-screen
       - sonic-screen-library
       - sonic-screenlocker
