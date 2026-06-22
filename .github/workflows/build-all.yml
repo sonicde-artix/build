@@ -444,6 +444,7 @@ jobs:
       - sonic-frameworks-auth
       - sonic-frameworks-cmake-modules
       - sonic-frameworks-core-addons
+      - sonic-frameworks-gui-addons
       - sonic-frameworks-io
       - sonic-frameworks-keybind
       - sonic-frameworks-quick-ui
@@ -463,6 +464,7 @@ jobs:
       - sonic-frameworks-auth
       - sonic-frameworks-cmake-modules
       - sonic-frameworks-core-addons
+      - sonic-frameworks-gui-addons
       - sonic-frameworks-io
       - sonic-frameworks-keybind
       - sonic-frameworks-quick-ui
