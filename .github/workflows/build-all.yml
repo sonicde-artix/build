@@ -62,7 +62,7 @@ jobs:
       - sonic-frameworks-runner
       - sonic-frameworks-windowsystem
       - sonic-interface-libraries
-      - sonic-sysguard-library
+      - sonic-system-monitor-library
       - sonic-win
       - sonic-workspace
     with:
@@ -239,7 +239,6 @@ jobs:
   sonic-login-manager-dinit:
     uses: ./.github/workflows/build-package.yml
     needs:
-      - sonic-frameworks-cmake-modules
       - sonic-login-manager
     with:
       repository: ${{ github.repository_owner }}/sonic-login-manager-dinit
@@ -249,7 +248,6 @@ jobs:
   sonic-login-manager-openrc:
     uses: ./.github/workflows/build-package.yml
     needs:
-      - sonic-frameworks-cmake-modules
       - sonic-login-manager
     with:
       repository: ${{ github.repository_owner }}/sonic-login-manager-openrc
@@ -259,7 +257,6 @@ jobs:
   sonic-login-manager-runit:
     uses: ./.github/workflows/build-package.yml
     needs:
-      - sonic-frameworks-cmake-modules
       - sonic-login-manager
     with:
       repository: ${{ github.repository_owner }}/sonic-login-manager-runit
@@ -269,7 +266,6 @@ jobs:
   sonic-login-manager-s6:
     uses: ./.github/workflows/build-package.yml
     needs:
-      - sonic-frameworks-cmake-modules
       - sonic-login-manager
     with:
       repository: ${{ github.repository_owner }}/sonic-login-manager-s6
@@ -344,8 +340,6 @@ jobs:
   sonic-silver-sddm:
     uses: ./.github/workflows/build-package.yml
     needs:
-      - sonic-frameworks-cmake-modules
-      - sonic-frameworks-doctools
       - sonic-workspace
     with:
       repository: ${{ github.repository_owner }}/sonic-silver-sddm
@@ -366,18 +360,6 @@ jobs:
       force-build: ${{ inputs.force-build }}
     secrets: inherit
 
-  sonic-sysguard-library:
-    uses: ./.github/workflows/build-package.yml
-    needs:
-      - sonic-frameworks-auth
-      - sonic-frameworks-cmake-modules
-      - sonic-frameworks-core-addons
-      - sonic-frameworks-quick-ui
-    with:
-      repository: ${{ github.repository_owner }}/sonic-sysguard-library
-      force-build: ${{ inputs.force-build }}
-    secrets: inherit
-
   sonic-system-info:
     uses: ./.github/workflows/build-package.yml
     needs:
@@ -389,6 +371,18 @@ jobs:
       - sonic-frameworks-quick-ui
     with:
       repository: ${{ github.repository_owner }}/sonic-system-info
+      force-build: ${{ inputs.force-build }}
+    secrets: inherit
+
+  sonic-system-monitor-library:
+    uses: ./.github/workflows/build-package.yml
+    needs:
+      - sonic-frameworks-auth
+      - sonic-frameworks-cmake-modules
+      - sonic-frameworks-core-addons
+      - sonic-frameworks-quick-ui
+    with:
+      repository: ${{ github.repository_owner }}/sonic-system-monitor-library
       force-build: ${{ inputs.force-build }}
     secrets: inherit
 
@@ -431,7 +425,7 @@ jobs:
       - sonic-interface-libraries
       - sonic-night-light
       - sonic-screenlocker
-      - sonic-sysguard-library
+      - sonic-system-monitor-library
       - sonic-win
     with:
       repository: ${{ github.repository_owner }}/sonic-workspace
@@ -461,18 +455,7 @@ jobs:
   sonic-workspace-wallpapers:
     uses: ./.github/workflows/build-package.yml
     needs:
-      - sonic-frameworks-auth
       - sonic-frameworks-cmake-modules
-      - sonic-frameworks-core-addons
-      - sonic-frameworks-gui-addons
-      - sonic-frameworks-io
-      - sonic-frameworks-keybind
-      - sonic-frameworks-quick-ui
-      - sonic-frameworks-runner
-      - sonic-frameworks-windowsystem
-      - sonic-interface-libraries
-      - sonic-win
-      - sonic-workspace
     with:
       repository: ${{ github.repository_owner }}/sonic-workspace-wallpapers
       force-build: ${{ inputs.force-build }}
@@ -483,7 +466,6 @@ jobs:
     needs:
       - sonic-audio-applet-pulse
       - sonic-desktop-interface
-      - sonic-frameworks-cmake-modules
       - sonic-login-manager
       - sonic-network-manager
       - sonic-night-light
@@ -528,8 +510,8 @@ jobs:
       - sonic-screenlocker
       - sonic-silver-sddm
       - sonic-silver-theme
-      - sonic-sysguard-library
       - sonic-system-info
+      - sonic-system-monitor-library
       - sonic-win
       - sonic-workspace
       - sonic-workspace-addons
