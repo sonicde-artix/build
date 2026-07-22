@@ -26,6 +26,7 @@ gh_env_set SCRIPTS_DIR "$SCRIPTS_DIR"
 
 gh_env_set CURRENT_RELEASE_TAG "$CARCH"
 gh_env_set NEXT_RELEASE_TAG "$CARCH-next"
+gh_env_set STAGING_TAG "$CARCH-staging"
 
 case "$INPUT_BRANCH" in
 	master) RELEASE_BRANCH='stable-testing' ;;

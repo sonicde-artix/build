@@ -102,14 +102,14 @@ jobs:
         working-directory: pkgbuilds
         run: |
           "${SCRIPTS_DIR}"/try-copy-assets.sh "$TARGET_REPOSITORY" \
-              "$CURRENT_RELEASE_TAG" "$NEXT_RELEASE_TAG" "$INPUT_PACKAGE"
+              "$CURRENT_RELEASE_TAG" "$STAGING_TAG" "$INPUT_PACKAGE"
 
       - name: Download dependencies
         if: ${{ env.BUILD_NEEDED == 'true' }}
         working-directory: pkgbuilds
         run: |
           "${SCRIPTS_DIR}"/download-dependencies.sh "$TARGET_REPOSITORY" \
-              "$NEXT_RELEASE_TAG" "$INPUT_PACKAGE"
+              "$STAGING_TAG" "$INPUT_PACKAGE"
 
       - name: Build package
         if: ${{ env.BUILD_NEEDED == 'true' }}
@@ -141,4 +141,4 @@ jobs:
         working-directory: pkgbuilds
         run: |
           gh release upload --repo "$TARGET_REPOSITORY" \
-              "$NEXT_RELEASE_TAG" "$INPUT_PACKAGE"/*.pkg.*
+              "$STAGING_TAG" "$INPUT_PACKAGE"/*.pkg.*

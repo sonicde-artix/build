@@ -10,9 +10,9 @@ set -eu
 
 # Script Parameters
 # $1: binaries repository to check for existing artifacts
-# $2: CURRENT_RELEASE_TAG
-# $3: NEXT_RELEASE_TAG
-# $4: package name to check
+# $2: source release tag
+# $3: target release tag
+# $4: package name
 
 
 # Functions

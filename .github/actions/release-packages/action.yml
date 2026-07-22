@@ -33,7 +33,7 @@ runs:
         private-key: ${{ inputs.app-private-key }}
         owner: ${{ github.repository_owner }}
 
-    - name: Checkout workflow # so we can run our own scripts
+    - name: Checkout workflow # so we can run our scripts
       uses: actions/checkout@v6
 
     - name: Setup env and download packages
@@ -50,7 +50,7 @@ runs:
         gh_env_set REPO_NAME "${INPUT_REPO_DB_PREFIX}-${RELEASE_BRANCH}"
 
         gh release download --skip-existing --pattern '*' \
-            --repo "$TARGET_REPOSITORY" "$NEXT_RELEASE_TAG"
+            --repo "$TARGET_REPOSITORY" "$STAGING_TAG"
 
     - name: Create repo
       uses: callmetango/archlinux-make-repo-action@HEAD
@@ -62,7 +62,11 @@ runs:
       env:
         APP_TOKEN: ${{ steps.app-token.outputs.token }}
       run: |
+        "$SCRIPTS_DIR"/draft-new-release.sh "$TARGET_REPOSITORY" \
+            "$NEXT_RELEASE_TAG" 'true'
         gh release upload --repo "$TARGET_REPOSITORY" "$NEXT_RELEASE_TAG" \
-            "$REPO_NAME".files* "$REPO_NAME".db*
+            *.pkg.* "$REPO_NAME".files* "$REPO_NAME".db*
         "$SCRIPTS_DIR"/release-new-release.sh "$TARGET_REPOSITORY" \
             "$CURRENT_RELEASE_TAG" "$NEXT_RELEASE_TAG"
+        gh release delete --cleanup-tag --yes --repo "$TARGET_REPOSITORY" \
+            "$STAGING_TAG" 2>/dev/null

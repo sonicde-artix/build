@@ -49,4 +49,4 @@ runs:
       run: |
         . "${SCRIPTS_DIR}"/setup-build-env.sh
         "${SCRIPTS_DIR}"/draft-new-release.sh "$TARGET_REPOSITORY" \
-            "$NEXT_RELEASE_TAG" "$INPUT_FORCE_BUILD"
+            "$STAGING_TAG" "$INPUT_FORCE_BUILD"
