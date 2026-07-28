@@ -68,5 +68,4 @@ runs:
             *.pkg.* "$REPO_NAME".files* "$REPO_NAME".db*
         "$SCRIPTS_DIR"/release-new-release.sh "$TARGET_REPOSITORY" \
             "$CURRENT_RELEASE_TAG" "$NEXT_RELEASE_TAG"
-        gh release delete --cleanup-tag --yes --repo "$TARGET_REPOSITORY" \
-            "$STAGING_TAG" 2>/dev/null
+        gh release delete --yes --repo "$TARGET_REPOSITORY" "$STAGING_TAG"
