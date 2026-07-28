@@ -27,10 +27,12 @@ assets_filter() {
 
 # Main
 
+epoch=0
 source "$4"/PKGBUILD
 
 PKGBASE="${pkgname[0]}"
-ASSETS_WC="$PKGBASE-$pkgver-$pkgrel-*.pkg.*"
+test $epoch -gt 0 && epoch="${epoch}." || epoch=
+ASSETS_WC="$PKGBASE-${epoch}$pkgver-$pkgrel-*.pkg.*"
 ASSETS_RE="$(printf "$ASSETS_WC" | sed -e 's/\./\\./g' -e 's/\*/.*/g')"
 
 printf "Looking for an asset matching '$ASSETS_WC'.\n"
@@ -48,6 +50,9 @@ if [ ! "$ASSETS" ] ; then
 	exit 0
 fi
 
-printf "Copying assets '$ASSETS_WC' from release '$2' to '$3'\n"
-gh release download --skip-existing --pattern "$ASSETS_WC" --repo "$1" "$2"
-gh release upload --repo "$1" "$3" "$ASSETS_WC"
+printf "Copying assets of '$PKGBASE' from release '$2' to '$3'\n"
+for PKGNAME in "${pkgname[@]}" ; do
+	ASSETS_WC="$PKGNAME-${epoch}$pkgver-$pkgrel-*.pkg.*"
+	gh release download --skip-existing --pattern "$ASSETS_WC" --repo "$1" "$2"
+	gh release upload --repo "$1" "$3" "$ASSETS_WC"
+done
