@@ -112,7 +112,9 @@ jobs:
       - sonic-frameworks-gui-addons
       - sonic-frameworks-icon-themes
       - sonic-frameworks-quick-ui
+      - sonic-frameworks-silver-icons
       - sonic-frameworks-windowsystem
+      - sonic-silver
     with:
       package: sonic-breeze
       branch: ${{ inputs.branch }}
@@ -534,6 +536,71 @@ jobs:
       build-needed: ${{ inputs.build-needed }}
     secrets: inherit
 
+  sonic-login-manager-dinit:
+    uses: ./.github/workflows/build-package.yml
+    needs:
+      - _setup
+      - sonic-login-manager
+    with:
+      package: sonic-login-manager-dinit
+      branch: ${{ inputs.branch }}
+      build-needed: ${{ inputs.build-needed }}
+    secrets: inherit
+
+  sonic-login-manager-openrc:
+    uses: ./.github/workflows/build-package.yml
+    needs:
+      - _setup
+      - sonic-login-manager
+    with:
+      package: sonic-login-manager-openrc
+      branch: ${{ inputs.branch }}
+      build-needed: ${{ inputs.build-needed }}
+    secrets: inherit
+
+  sonic-login-manager-runit:
+    uses: ./.github/workflows/build-package.yml
+    needs:
+      - _setup
+      - sonic-login-manager
+    with:
+      package: sonic-login-manager-runit
+      branch: ${{ inputs.branch }}
+      build-needed: ${{ inputs.build-needed }}
+    secrets: inherit
+
+  sonic-login-manager-s6:
+    uses: ./.github/workflows/build-package.yml
+    needs:
+      - _setup
+      - sonic-login-manager
+    with:
+      package: sonic-login-manager-s6
+      branch: ${{ inputs.branch }}
+      build-needed: ${{ inputs.build-needed }}
+    secrets: inherit
+
+  sonic-mobile-interface:
+    uses: ./.github/workflows/build-package.yml
+    needs:
+      - _setup
+      - sonic-audio-applet-pulse
+      - sonic-frameworks-auth
+      - sonic-frameworks-cmake-modules
+      - sonic-frameworks-core-addons
+      - sonic-frameworks-io
+      - sonic-frameworks-windowsystem
+      - sonic-interface-libraries
+      - sonic-network-manager
+      - sonic-screen-library
+      - sonic-win
+      - sonic-workspace
+    with:
+      package: sonic-mobile-interface
+      branch: ${{ inputs.branch }}
+      build-needed: ${{ inputs.build-needed }}
+    secrets: inherit
+
   sonic-network-manager:
     uses: ./.github/workflows/build-package.yml
     needs:
@@ -787,6 +854,7 @@ jobs:
       - sonic-frameworks-core-addons
       - sonic-frameworks-io
       - sonic-frameworks-quick-ui
+      - sonic-frameworks-quick-ui-addons
       - sonic-frameworks-windowsystem
       - sonic-interface-libraries
       - sonic-network-manager
@@ -936,6 +1004,7 @@ jobs:
       - sonic-frameworks-core-addons
       - sonic-frameworks-icon-themes
       - sonic-frameworks-io
+      - sonic-frameworks-io-fuse
       - sonic-frameworks-keybind
       - sonic-frameworks-quick-ui
       - sonic-frameworks-windowsystem
@@ -984,6 +1053,11 @@ jobs:
       - sonic-interface-libraries
       - sonic-keybind-daemon
       - sonic-login-manager
+      - sonic-login-manager-dinit
+      - sonic-login-manager-openrc
+      - sonic-login-manager-runit
+      - sonic-login-manager-s6
+      - sonic-mobile-interface
       - sonic-network-manager
       - sonic-night-light
       - sonic-pipewire
