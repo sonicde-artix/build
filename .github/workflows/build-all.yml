@@ -112,9 +112,9 @@ jobs:
       - sonic-frameworks-gui-addons
       - sonic-frameworks-icon-themes
       - sonic-frameworks-quick-ui
-      - sonic-frameworks-silver-icons
       - sonic-frameworks-windowsystem
       - sonic-silver
+      - sonic-silver-icons
     with:
       package: sonic-breeze
       branch: ${{ inputs.branch }}
@@ -299,7 +299,7 @@ jobs:
       - _setup
       - sonic-frameworks-cmake-modules
       - sonic-frameworks-color-scheme
-      - sonic-frameworks-silver-icons
+      - sonic-silver-icons
     with:
       package: sonic-frameworks-icon-themes
       branch: ${{ inputs.branch }}
@@ -451,17 +451,6 @@ jobs:
       - sonic-frameworks-core-addons
     with:
       package: sonic-frameworks-settings-ui
-      branch: ${{ inputs.branch }}
-      build-needed: ${{ inputs.build-needed }}
-    secrets: inherit
-
-  sonic-frameworks-silver-icons:
-    uses: ./.github/workflows/build-package.yml
-    needs:
-      - _setup
-      - sonic-frameworks-cmake-modules
-    with:
-      package: sonic-frameworks-silver-icons
       branch: ${{ inputs.branch }}
       build-needed: ${{ inputs.build-needed }}
     secrets: inherit
@@ -761,8 +750,8 @@ jobs:
       - sonic-frameworks-core-addons
       - sonic-frameworks-gui-addons
       - sonic-frameworks-quick-ui
-      - sonic-frameworks-silver-icons
       - sonic-frameworks-windowsystem
+      - sonic-silver-icons
     with:
       package: sonic-silver
       branch: ${{ inputs.branch }}
@@ -777,6 +766,17 @@ jobs:
       - sonic-silver
     with:
       package: sonic-silver-gtk
+      branch: ${{ inputs.branch }}
+      build-needed: ${{ inputs.build-needed }}
+    secrets: inherit
+
+  sonic-silver-icons:
+    uses: ./.github/workflows/build-package.yml
+    needs:
+      - _setup
+      - sonic-frameworks-cmake-modules
+    with:
+      package: sonic-silver-icons
       branch: ${{ inputs.branch }}
       build-needed: ${{ inputs.build-needed }}
     secrets: inherit
@@ -1060,7 +1060,6 @@ jobs:
       - sonic-frameworks-quick-ui-addons
       - sonic-frameworks-runner
       - sonic-frameworks-settings-ui
-      - sonic-frameworks-silver-icons
       - sonic-frameworks-windowsystem
       - sonic-gtk-theme-bridge
       - sonic-interface-libraries
@@ -1082,6 +1081,7 @@ jobs:
       - sonic-screenlocker
       - sonic-silver
       - sonic-silver-gtk
+      - sonic-silver-icons
       - sonic-silver-sddm
       - sonic-system-info
       - sonic-system-monitor-library
