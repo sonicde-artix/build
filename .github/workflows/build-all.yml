@@ -2350,7 +2350,6 @@ jobs:
       - sonic-frameworks-widgets-addons
       - sonic-frameworks-windowsystem
       - sonic-frameworks-xml-gui
-      - sonic-pipewire
       - sonic-quick-image-editor
     with:
       package: sonic-screenies
